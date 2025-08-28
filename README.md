@@ -153,10 +153,10 @@ This is the basic way to run the script without any prior installation.
 **Usage Examples:**
 ```bash
 # Scan with full passwords
-python crawlrice.py -u [http://example.com](http://example.com) -au attacker -ap password -vu victim -vp password
+python crawlrice.py -u http://example.com -au attacker -ap password -vu victim -vp password
 
 # Scan if the attacker account has no password
-python crawlrice.py -u [http://target.com](http://target.com) -au attacker -vu admin -vp adminpass
+python crawlrice.py -u http://example.com -au attacker -vu admin -vp adminpass
 
 # Display the help menu
 python crawlrice.py --help
