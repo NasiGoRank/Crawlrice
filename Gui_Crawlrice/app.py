@@ -28,8 +28,11 @@ login_manager.login_view = 'login'
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPORTS_DIR = os.path.join(SCRIPT_DIR, 'reports')
-SCANNER_SCRIPT_PATH = os.path.join(SCRIPT_DIR, '..', 'Cli_Crawlrice', 'crawlrice.py')
 
+if os.path.exists('/.dockerenv'):
+    SCANNER_SCRIPT_PATH = '/app/Cli_Crawlrice/crawlrice.py'
+else:
+    SCANNER_SCRIPT_PATH = os.path.join(SCRIPT_DIR, '..', 'Cli_Crawlrice', 'crawlrice.py')
 log_queue = queue.Queue()
 
 class User(UserMixin):
