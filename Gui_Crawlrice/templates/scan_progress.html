@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}Proses Scan Berjalan{% endblock %}
+
+{% block content %}
+<div class="card bg-body-tertiary border-secondary">
+    <div class="card-body p-4">
+        <h1 class="card-title h4">🖥️ Proses Scan Berjalan...</h1>
+        <p class="card-subtitle mb-3 text-body-secondary">Output dari scanner akan tampil secara real-time di bawah ini. Mohon jangan tutup halaman ini sampai proses selesai.</p>
+        
+        <div id="log-container" class="bg-dark text-light p-3 rounded font-monospace">
+            <pre id="log-output" class="mb-0" style="white-space: pre-wrap; word-wrap: break-word;"></pre>
+        </div>
+
+        <a href="{{ url_for('index') }}" id="back-to-dashboard" class="btn btn-success mt-3" style="display: none;">
+            ✅ Scan Selesai, Kembali ke Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const logOutput = document.getElementById('log-output');
+        const backButton = document.getElementById('back-to-dashboard');
+        
+        // Mulai mendengarkan event dari server
+        const eventSource = new EventSource("{{ url_for('stream_scan_logs') }}");
+
+        // Fungsi ini akan dijalankan setiap kali server mengirim data
+        eventSource.onmessage = function(event) {
+            const data = event.data;
+
+            if (data === '---SCAN-END---') {
+                logOutput.innerHTML += "\n\n[INFO] Proses scan telah selesai.";
+                backButton.style.display = 'block'; // Tampilkan tombol kembali
+                eventSource.close(); // Hentikan koneksi
+            } else {
+                // Tambahkan baris log baru ke tampilan
+                logOutput.innerHTML += data + '\n';
+                // Auto-scroll ke bawah
+                logOutput.parentElement.scrollTop = logOutput.parentElement.scrollHeight;
+            }
+        };
+
+        // Handle jika terjadi error pada koneksi
+        eventSource.onerror = function(err) {
+            console.error("EventSource failed:", err);
+            logOutput.innerHTML += "\n\n[ERROR] Koneksi ke server terputus.";
+            eventSource.close();
+        };
+    });
+</script>
+{% endblock %}

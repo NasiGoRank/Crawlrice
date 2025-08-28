@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard Laporan{% endblock %}
+
+{% block content %}
+<div class="card bg-body-tertiary border-secondary">
+    <div class="card-body p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h1 class="card-title h4 mb-1">📊 Dashboard Laporan Scan</h1>
+            <p class="card-subtitle text-body-secondary mb-0">Gunakan fitur pencarian atau urutkan kolom untuk menemukan laporan yang Anda cari.</p>
+        </div>
+        <div>
+            <form action="{{ url_for('clear_reports') }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus semua riwayat laporan? Aksi ini tidak bisa dibatalkan.');">
+                <button type="submit" class="btn btn-danger btn-sm">Hapus Riwayat</button>
+            </form>
+            </div>
+    </div>
+    
+    <table id="reportsTable" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Nama Domain</th>
+                    <th>Kerentanan</th>
+                    <th>Tanggal Scan</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports %}
+                <tr>
+                    <td>{{ report.domain }}</td>
+                    <td>
+                        {% if report.vuln_count > 0 %}
+                            <span class="text-danger fw-bold">{{ report.vuln_count }}</span>
+                        {% else %}
+                            <span class="text-success">{{ report.vuln_count }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ report.scan_date | datetimeformat }}</td>
+                    <td>
+                        <a href="{{ url_for('view_report', filename=report.filename) }}" class="btn btn-primary btn-sm">
+                            Lihat Detail
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('#reportsTable').DataTable({
+            "order": [[ 2, "desc" ]],
+            "language": {
+                "search": "",
+                "searchPlaceholder": "Cari Laporan...",
+                "lengthMenu": "Tampilkan _MENU_ entri",
+                "info": "Menampilkan _START_ - _END_ dari _TOTAL_ laporan",
+                "paginate": { "next": "→", "previous": "←" }
+            }
+        });
+    });
+</script>
+{% endblock %}

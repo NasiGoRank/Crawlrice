@@ -1,0 +1,14 @@
+/* Menyesuaikan DataTables agar cocok dengan tema Bootstrap */
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    background-color: var(--bs-tertiary-bg);
+    color: var(--bs-body-color);
+    border: 1px solid var(--bs-border-color);
+}
+
+#log-container {
+    height: 400px;
+    overflow-y: auto;
+    font-size: 0.85em;
+    line-height: 1.6;
+}

@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}Detail Laporan: {{ filename }}{% endblock %}
+
+{% block content %}
+<a href="{{ url_for('index') }}" class="btn btn-outline-secondary mb-3">← Kembali ke Dashboard</a>
+
+<div class="card bg-body-tertiary border-secondary">
+    <div class="card-header h5">
+        Ringkasan Laporan
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-body-tertiary"><b>Base URL:</b> <code>{{ report.base_url }}</code></li>
+            <li class="list-group-item bg-body-tertiary"><b>Waktu Tes:</b> <code>{{ report.get('tested_at') | datetimeformat }}</code></li>
+            
+           <li class="list-group-item bg-body-tertiary">
+                <b>Akun Penyerang:</b> <code>{{ report.get('actors', {}).get('attacker', {}).get('username', 'N/A') }}</code>
+            </li>
+            <li class="list-group-item bg-body-tertiary">
+                <b>Akun Korban:</b> <code>{{ report.get('actors', {}).get('victim', {}).get('username', 'N/A') }}</code>
+            </li>
+            <li class="list-group-item bg-body-tertiary"><b>Potensi Kerentanan:</b> <span class="text-danger fw-bold">{{ report.summary.vulnerabilities_found }}</span></li>
+        </ul>
+    </div>
+</div>
+
+<h2 class="mt-4">Temuan (Findings)</h2>
+{% if report.findings %}
+    {% for finding in report.findings %}
+    <div class="card bg-body-tertiary border-secondary mb-3">
+        <div class="card-header">
+            <span class="badge text-bg-{{ 'primary' if finding.endpoint.method == 'GET' else 'success' }}">{{ finding.endpoint.method }}</span>
+            <code>{{ finding.endpoint.path }} {{ finding.endpoint.query if finding.endpoint.query else '' }}</code>
+        </div>
+        <div class="card-body">
+            <p><b>Status Respon:</b> <code>{{ finding.result.status }}</code></p>
+            <p><b>Vulnerable:</b> 
+                {% if finding.vulnerable %}<span class="text-danger fw-bold">YES</span>{% else %}<span class="text-success">NO</span>{% endif %}
+            </p>
+            <details>
+                <summary class="text-primary" style="cursor: pointer;">Tampilkan Request Body & Snippet Respon</summary>
+                <div class="mt-2">
+                    <h6>Request Body</h6>
+                    <pre class="bg-dark text-light p-2 rounded"><code>{{ finding.endpoint.body | tojson(indent=2) }}</code></pre>
+                    <h6>Snippet Respon</h6>
+                    <pre class="bg-dark text-light p-2 rounded"><code>{{ finding.result.snippet }}</code></pre>
+                </div>
+            </details>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="alert alert-success">✅ Tidak ada kerentanan yang ditemukan dalam laporan ini.</div>
+{% endif %}
+{% endblock %}
