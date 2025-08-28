@@ -1,4 +1,4 @@
-2# IDOR/BAC Scanner with Web GUI
+# IDOR/BAC Scanner with Web GUI
 
 Sebuah tool untuk melakukan pemindaian kerentanan IDOR (*Insecure Direct Object References*) dan BAC (*Broken Access Control*) secara otomatis. Proyek ini terdiri dari dua bagian utama: sebuah *scanner* CLI yang fleksibel dan antarmuka web (GUI) berbasis Flask untuk mempermudah eksekusi *scan* dan analisis laporan.
 
