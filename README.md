@@ -25,14 +25,17 @@ A tool for automatically scanning for IDOR (*Insecure Direct Object References*)
 ```
 Crawlrice/
 ├── Cli_Crawlrice/
+│   ├── __init__.py         # Makes the directory a Python package
 │   └── crawlrice.py        # Main scanner script (CLI)
 ├── Gui_Crawlrice/
 │   ├── app.py              # Flask web application (GUI)
 │   ├── reports/            # Report output folder (ignored by Git)
 │   ├── static/             # CSS and JavaScript files
 │   └── templates/          # HTML files
+├── setup.sh
 ├── README.md               # This documentation
-└── requirements.txt        # List of required libraries
+├── requirements.txt        # List of required libraries
+└── setup.py                # Setup script for installing the CLI command
 ```
 
 ---
@@ -169,7 +172,8 @@ This method allows you to run the `crawlrice` command from **any directory** in 
 
 2.  **Install the package** in "editable" mode. This creates a link to your script so any changes you make are immediately active.
     ```bash
-    pip install -e .
+    chmod +x setup.sh
+    ./setup.sh
     ```
 
 3.  Once installed, you can open a **new terminal** and use the `crawlrice` command from anywhere.

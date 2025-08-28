@@ -278,7 +278,7 @@ def main():
         epilog="""
 Contoh Penggunaan:
   1. Scan dengan password lengkap:
-     python %(prog)s -u http://127.0.0.1:5000 -au student1 -ap password1 -vu admin -vp admin123
+     python %(prog)s -u http://127.0.0.1:5000 -au attacker -ap password -vu victim -vp password
 
   2. Scan di mana akun attacker tidak memiliki password:
      python %(prog)s -u http://target.com -au attacker -vu admin -vp adminpass
