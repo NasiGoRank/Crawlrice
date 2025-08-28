@@ -158,10 +158,3 @@ python crawlrice.py -u [http://target.com](http://target.com) -au attacker -vu a
 # Display the help menu
 python crawlrice.py --help
 ```
-
----
-## 🔧 Configuration
-Some parts of the script may need to be adjusted:
-
--   **Web Admin Credentials**: To change the dashboard login username and password, edit the `ADMIN_USER` dictionary in the `Gui_Crawlrice/app.py` file.
--   **User Role Selector**: If the scanner fails to detect the user role (displays "Unknown"), you may need to adjust the CSS Selector inside the `get_user_role` function in the `Cli_Crawlrice/crawlrice.py` file to match the target website's HTML structure.
