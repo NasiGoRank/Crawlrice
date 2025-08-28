@@ -63,7 +63,7 @@ To run this project on your computer, follow these steps:
     ```
 
 ---
-## 🚀 Usage
+## 🚀 How to Use
 There are several ways to use this tool: via the Web Interface (recommended) or the Command-Line.
 
 ### 1. Using the Web Interface (GUI)
