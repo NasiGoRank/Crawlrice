@@ -1,6 +1,0 @@
-beautifulsoup4==4.9.3
-Flask
-Flask-Login
-requests
-selenium
-gunicorn

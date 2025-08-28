@@ -1,5 +1,3 @@
-# Gui_Crawlrice/docker-compose.yml
-
 version: '3.3'
 
 services:
@@ -9,5 +7,5 @@ services:
     ports:
       - "5050:5050"
     volumes:
-      - ./reports:/app/reports
+      - ./Gui_Crawlrice/reports:/app/reports
     restart: unless-stopped
