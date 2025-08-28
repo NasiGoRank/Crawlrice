@@ -1,0 +1,13 @@
+# Gui_Crawlrice/docker-compose.yml
+
+version: '3.8'
+
+services:
+  scanner-gui:
+    build: .
+    container_name: scanner-gui-container
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./reports:/app/reports
+    restart: unless-stopped
