@@ -1,158 +1,167 @@
 # IDOR/BAC Scanner with Web GUI
 
-Sebuah tool untuk melakukan pemindaian kerentanan IDOR (*Insecure Direct Object References*) dan BAC (*Broken Access Control*) secara otomatis. Proyek ini terdiri dari dua bagian utama: sebuah *scanner* CLI yang fleksibel dan antarmuka web (GUI) berbasis Flask untuk mempermudah eksekusi *scan* dan analisis laporan.
+A tool for automatically scanning for IDOR (*Insecure Direct Object References*) and BAC (*Broken Access Control*) vulnerabilities. This project consists of two main parts: a flexible CLI scanner and a Flask-based web interface (GUI) to simplify scan execution and report analysis.
 
-## 📸 Tampilan Antarmuka
+## 📸 Interface Showcase
 
-### Dashboard Utama
-
-
-### Halaman Proses Scan Real-time
+### Main Dashboard
 
 
----
-## ✨ Fitur Utama
--   **Dashboard Web Interaktif**: Melihat riwayat laporan dalam bentuk tabel yang dapat dicari dan diurutkan.
--   **Eksekusi Scan dari Web**: Menjalankan pemindaian baru dengan mudah melalui form di antarmuka web.
--   **Log Scan Real-time**: Memantau output dari proses *scanner* secara langsung di browser.
--   **Scanner CLI Fleksibel**: Menjalankan pemindaian langsung dari terminal dengan berbagai argumen dinamis.
--   ***Crawling* Cerdas**: Menggunakan Selenium untuk menjelajahi website modern yang sangat bergantung pada JavaScript.
--   **Deteksi Peran Otomatis**: Mampu mengekstrak peran pengguna (misal: "admin", "student") dari halaman profil setelah login.
--   **Manajemen Laporan**: Melihat detail temuan kerentanan dan membersihkan riwayat laporan dengan mudah.
+### Real-time Scan Progress Page
+
 
 ---
-## 📂 Struktur Proyek
+## ✨ Key Features
+-   **Interactive Web Dashboard**: View scan history in a searchable and sortable table.
+-   **Execute Scans from the Web**: Easily run new scans via a form in the web interface.
+-   **Real-time Scan Logs**: Monitor the scanner's output process directly in the browser.
+-   **Flexible CLI Scanner**: Run scans directly from the terminal with various dynamic arguments.
+-   **Intelligent Crawling**: Uses Selenium to crawl modern, JavaScript-heavy websites.
+-   **Automatic Role Detection**: Capable of extracting user roles (e.g., "admin", "student") from the profile page after logging in.
+-   **Report Management**: View vulnerability finding details and easily clear the report history.
+
+---
+## 📂 Project Structure
 ```
 Crawlrice/
 ├── Cli_Crawlrice/
-│   └── crawlrice.py        # Skrip utama scanner (CLI)
+│   └── crawlrice.py        # Main scanner script (CLI)
 ├── Gui_Crawlrice/
-│   ├── app.py              # Aplikasi web Flask (GUI)
-│   ├── reports/            # Folder output laporan (diabaikan oleh Git)
-│   ├── static/             # File CSS dan JavaScript
-│   └── templates/          # File HTML
-├── README.md               # Dokumentasi ini
-└── requirements.txt        # Daftar library yang dibutuhkan
+│   ├── app.py              # Flask web application (GUI)
+│   ├── reports/            # Report output folder (ignored by Git)
+│   ├── static/             # CSS and JavaScript files
+│   └── templates/          # HTML files
+├── README.md               # This documentation
+└── requirements.txt        # List of required libraries
 ```
 
 ---
-## ⚙️ Instalasi
-Untuk menjalankan proyek ini di komputer Anda, ikuti langkah-langkah berikut:
+## ⚙️ Installation
+To run this project on your computer, follow these steps:
 
-1.  **Clone repository ini:**
+1.  **Clone this repository:**
     ```bash
     git clone [https://github.com/NasiGoRank/Crawlrice.git](https://github.com/NasiGoRank/Crawlrice.git)
     cd Crawlrice
     ```
 
-2.  **(Opsional) Buat dan aktifkan *virtual environment*:**
+2.  **(Optional but recommended) Create and activate a virtual environment:**
     ```bash
-    # Membuat venv
+    # Create venv
     python -m venv venv
 
-    # Mengaktifkan venv di Windows
+    # Activate venv on Windows
     .\venv\Scripts\activate
 
-    # Mengaktifkan venv di Linux/macOS
+    # Activate venv on Linux/macOS
     source venv/bin/activate
     ```
 
-3.  **Install semua library yang dibutuhkan:**
+3.  **Install all required libraries:**
     ```bash
     pip install -r requirements.txt
     ```
 
 ---
-## 🚀 Cara Penggunaan
-Ada beberapa cara untuk menggunakan tool ini: melalui Antarmuka Web (rekomendasi) atau melalui Command-Line.
+## 🚀 Usage
+There are several ways to use this tool: via the Web Interface (recommended) or the Command-Line.
 
-### 1. Menggunakan Antarmuka Web (GUI)
-Ini adalah cara termudah dan paling interaktif.
+### 1. Using the Web Interface (GUI)
+This is the easiest and most interactive method.
 
-1.  **Jalankan server web Flask:**
-    Buka terminal, masuk ke folder `Gui_Crawlrice`, lalu jalankan:
+1.  **Run the Flask web server:**
+    Open a terminal, navigate to the `Gui_Crawlrice` folder, and then run:
     ```bash
     cd Gui_Crawlrice
     python app.py
     ```
 
-2.  **Buka Dashboard:**
-    Buka browser Anda dan kunjungi alamat `http://127.0.0.1:5050`.
+2.  **Open the Dashboard:**
+    Open your browser and visit `http://127.0.0.1:5050`.
 
 3.  **Login:**
-    Gunakan kredensial admin yang sudah diatur di dalam file `app.py`. Default:
+    Use the admin credentials configured in the `app.py` file. Defaults:
     -   Username: `admin`
     -   Password: `password123`
 
-4.  **Mulai Scan Baru:**
-    -   Klik tombol **"🚀 Scan Baru"**.
-    -   Isi form dengan URL target dan kredensial untuk akun *attacker* (hak akses rendah) dan *victim* (hak akses tinggi).
-    -   Klik **"Mulai Scan"**. Anda akan diarahkan ke halaman yang menampilkan log proses scan secara *real-time*.
-    -   Setelah selesai, kembali ke dashboard untuk melihat laporan baru.
+4.  **Start a New Scan:**
+    -   Click the **"🚀 New Scan"** button.
+    -   Fill the form with the target URL and credentials for the attacker (low privilege) and victim (high privilege) accounts.
+    -   Click **"Start Scan"**. You will be redirected to a page that displays the scan process log in real-time.
+    -   After it's finished, return to the dashboard to see the new report.
+---
 
-### 2. 🐳 Menjalankan dengan Docker (Direkomendasikan)
-Ini adalah cara termudah untuk menjalankan aplikasi web. Anda hanya perlu Docker dan Docker Compose terinstal.
+### 2. 🐳 Running with Docker (Recommended)
+This is the easiest way to run the web application. You just need Docker and Docker Compose installed.
 
-#### Opsi 1: Menggunakan Docker Compose (Satu Perintah)
-1.  Pastikan Anda memiliki file `Dockerfile` dan `docker-compose.yml` di dalam folder `Gui_Crawlrice`.
-2.  Buka terminal di dalam folder `Gui_Crawlrice`, lalu jalankan:
+#### Option 1: Using Docker Compose (Single Command)
+1.  Ensure you have the `Dockerfile` and `docker-compose.yml` files inside the `Gui_Crawlrice` folder.
+2.  Open a terminal inside the `Gui_Crawlrice` folder, and then run:
     ```bash
     docker-compose up -d
     ```
-3.  Aplikasi web sekarang berjalan di `http://127.0.0.1:5001`.
-4.  Untuk menghentikan aplikasi, jalankan:
+3.  The web application is now running at `http://127.0.0.1:5050`.
+4.  To stop the application, run:
     ```bash
     docker-compose down
     ```
 
-#### Opsi 2: Menggunakan Docker Build & Run (Manual)
-1.  Pastikan Anda memiliki `Dockerfile` di dalam folder `Gui_Crawlrice`.
-2.  Buka terminal di dalam folder `Gui_Crawlrice` dan build image-nya:
+#### Option 2: Using Docker Build & Run (Manual)
+1.  Ensure you have the `Dockerfile` inside the `Gui_Crawlrice` folder.
+2.  Open a terminal inside the `Gui_Crawlrice` folder and build the image:
     ```bash
     docker build -t scanner-gui .
     ```
-3.  Setelah build selesai, jalankan container dengan perintah berikut:
+3.  After the build is complete, run the container with the following command:
     
-    **Untuk Windows (CMD/PowerShell):**
+    **For Windows (CMD/PowerShell):**
     ```bash
     docker run -p 5001:5001 -v "%cd%/reports:/app/reports" --name scanner-container scanner-gui
     ```
-    **Untuk Linux/macOS:**
+    **For Linux/macOS:**
     ```bash
     docker run -p 5001:5001 -v "$(pwd)/reports:/app/reports" --name scanner-container scanner-gui
     ```
-4.  Aplikasi web sekarang berjalan di `http://127.0.0.1:5001`.
+4.  The web application is now running at `http://127.0.0.1:5050`.
 
 ---
-## 🚀 Cara Menjalankan Scanner
-Setelah aplikasi web berjalan (baik via Docker maupun manual), Anda bisa memulai scan:
+## 🚀 How to Run the Scanner
+Once the web application is running (either via Docker or manually), you can start a scan:
 
-1.  Buka `http://127.0.0.1:5001` dan login (default: `admin`/`password123`).
-2.  Klik tombol **"🚀 Scan Baru"**.
-3.  Isi form dengan URL target dan kredensial, lalu klik **"Mulai Scan"**.
-4.  Anda akan diarahkan ke halaman log, dan setelah selesai, laporan akan muncul di dashboard.
+1.  Open `http://127.0.0.1:5050` and login (default: `admin`/`password123`).
+2.  Click the **"🚀 New Scan"** button.
+3.  Fill the form with the target URL and credentials, then click **"Start Scan"**.
+4.  You will be redirected to the log page, and after it's finished, the report will appear on the dashboard.
 
-### 2. Menggunakan Command-Line (CLI)
-Anda juga bisa menjalankan skrip scanner secara langsung dari terminal. Ini berguna untuk otomatisasi.
+> If port 5050 is already in use on the host, change `docker-compose.yml`:
 
-1.  Buka terminal dan masuk ke folder `Cli_Crawlrice`.
-2.  Jalankan skrip dengan argumen yang diperlukan.
+```yaml
+ports:
+  - "5051:5000"   # Host:Container
+```
+---
 
-**Contoh Penggunaan:**
+### 3. Using the Command-Line (CLI)
+You can also run the scanner script directly from the terminal. This is useful for automation.
+
+1.  Open a terminal and navigate to the `Cli_Crawlrice` folder.
+2.  Run the script with the required arguments.
+
+**Usage Examples:**
 ```bash
-# Scan dengan password lengkap
+# Scan with full passwords
 python crawlrice.py -u [http://example.com](http://example.com) -au attacker -ap password -vu victim -vp password
 
-# Scan jika akun attacker tidak menggunakan password
+# Scan if the attacker account has no password
 python crawlrice.py -u [http://target.com](http://target.com) -au attacker -vu admin -vp adminpass
 
-# Menampilkan menu bantuan
+# Display the help menu
 python crawlrice.py --help
 ```
 
 ---
-## 🔧 Konfigurasi
-Beberapa bagian dari skrip mungkin perlu Anda sesuaikan:
+## 🔧 Configuration
+Some parts of the script may need to be adjusted:
 
--   **Kredensial Admin Web**: Untuk mengubah username dan password login ke dashboard, edit dictionary `ADMIN_USER` di file `Gui_Crawlrice/app.py`.
--   **Selector Role User**: Jika *scanner* gagal mendeteksi peran user (menampilkan "Unknown"), Anda mungkin perlu menyesuaikan *CSS Selector* di dalam fungsi `get_user_role` pada file `Cli_Crawlrice/crawlrice.py` agar cocok dengan struktur HTML website target Anda.
+-   **Web Admin Credentials**: To change the dashboard login username and password, edit the `ADMIN_USER` dictionary in the `Gui_Crawlrice/app.py` file.
+-   **User Role Selector**: If the scanner fails to detect the user role (displays "Unknown"), you may need to adjust the CSS Selector inside the `get_user_role` function in the `Cli_Crawlrice/crawlrice.py` file to match the target website's HTML structure.
