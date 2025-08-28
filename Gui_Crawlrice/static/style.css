@@ -1,4 +1,3 @@
-/* Menyesuaikan DataTables agar cocok dengan tema Bootstrap */
 .dataTables_wrapper .dataTables_length select,
 .dataTables_wrapper .dataTables_filter input {
     background-color: var(--bs-tertiary-bg);

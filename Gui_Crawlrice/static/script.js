@@ -1,15 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('darkModeToggle');
-    const htmlElement = document.documentElement; // Target elemen <html>
+    const htmlElement = document.documentElement; 
 
-    // Fungsi untuk menerapkan tema berdasarkan preferensi
     const applyTheme = () => {
-        const theme = localStorage.getItem('theme') || 'dark'; // Default ke dark
+        const theme = localStorage.getItem('theme') || 'dark'; 
         htmlElement.setAttribute('data-bs-theme', theme);
         darkModeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
     };
 
-    // Fungsi untuk mengubah tema
     const toggleTheme = () => {
         const currentTheme = htmlElement.getAttribute('data-bs-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -22,6 +20,5 @@ document.addEventListener('DOMContentLoaded', () => {
         darkModeToggle.addEventListener('click', toggleTheme);
     }
 
-    // Terapkan tema saat halaman dimuat
     applyTheme();
 });

@@ -25,26 +25,21 @@
         const logOutput = document.getElementById('log-output');
         const backButton = document.getElementById('back-to-dashboard');
         
-        // Mulai mendengarkan event dari server
         const eventSource = new EventSource("{{ url_for('stream_scan_logs') }}");
 
-        // Fungsi ini akan dijalankan setiap kali server mengirim data
         eventSource.onmessage = function(event) {
             const data = event.data;
 
             if (data === '---SCAN-END---') {
                 logOutput.innerHTML += "\n\n[INFO] Proses scan telah selesai.";
-                backButton.style.display = 'block'; // Tampilkan tombol kembali
-                eventSource.close(); // Hentikan koneksi
+                backButton.style.display = 'block'; 
+                eventSource.close(); 
             } else {
-                // Tambahkan baris log baru ke tampilan
                 logOutput.innerHTML += data + '\n';
-                // Auto-scroll ke bawah
                 logOutput.parentElement.scrollTop = logOutput.parentElement.scrollHeight;
             }
         };
 
-        // Handle jika terjadi error pada koneksi
         eventSource.onerror = function(err) {
             console.error("EventSource failed:", err);
             logOutput.innerHTML += "\n\n[ERROR] Koneksi ke server terputus.";
