@@ -269,7 +269,8 @@ def run(base_url, attacker_user, attacker_pass, victim_user, victim_pass):
         f.write(html_report)
     print(f"✅ Laporan HTML ditulis ke {html_path}")
 
-if __name__ == "__main__":
+def main():
+    """Fungsi utama untuk parsing argumen dan menjalankan scan."""
     formatter = argparse.ArgumentDefaultsHelpFormatter
 
     parser = argparse.ArgumentParser(
@@ -328,3 +329,6 @@ Contoh Penggunaan:
         victim_user=args.victim_user,
         victim_pass=args.victim_pass
     )
+
+if __name__ == "__main__":
+    main()

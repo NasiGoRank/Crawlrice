@@ -142,10 +142,13 @@ Once the web application is running (either via Docker or manually), you can sta
 ---
 
 ### 3. Using the Command-Line (CLI)
-You can also run the scanner script directly from the terminal. This is useful for automation.
+You can also run the scanner script directly from the terminal. This is useful for automation. There are two ways to do this:
+
+#### Method A: Direct Execution
+This is the basic way to run the script without any prior installation.
 
 1.  Open a terminal and navigate to the `Cli_Crawlrice` folder.
-2.  Run the script with the required arguments.
+2.  Run the script with `python` and the required arguments.
 
 **Usage Examples:**
 ```bash
@@ -157,4 +160,25 @@ python crawlrice.py -u [http://target.com](http://target.com) -au attacker -vu a
 
 # Display the help menu
 python crawlrice.py --help
+```
+
+#### Method B: Installing as a Global Command (Recommended)
+This method allows you to run the `crawlrice` command from **any directory** in your terminal, just like a native application.
+
+1.  **Navigate to the project's root directory** (`Crawlrice/`) in your terminal and ensure your virtual environment is activated.
+
+2.  **Install the package** in "editable" mode. This creates a link to your script so any changes you make are immediately active.
+    ```bash
+    pip install -e .
+    ```
+
+3.  Once installed, you can open a **new terminal** and use the `crawlrice` command from anywhere.
+
+**Usage Examples (Global):**
+```bash
+# Scan with full passwords from any directory
+crawlrice -u [http://example.com](http://example.com) -au attacker -ap password -vu victim -vp password
+
+# Display the help menu from any directory
+crawlrice --help
 ```
