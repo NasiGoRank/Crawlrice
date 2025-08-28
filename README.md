@@ -98,6 +98,7 @@ This is the easiest way to run the web application. You just need Docker and Doc
 1.  Ensure you have the `Dockerfile` and `docker-compose.yml` files inside the `Gui_Crawlrice` folder.
 2.  Open a terminal inside the `Gui_Crawlrice` folder, and then run:
     ```bash
+    cd Gui_Crawlrice
     docker-compose up -d
     ```
 3.  The web application is now running at `http://127.0.0.1:5050`.
@@ -116,14 +117,20 @@ This is the easiest way to run the web application. You just need Docker and Doc
     
     **For Windows (CMD/PowerShell):**
     ```bash
-    docker run -p 5001:5001 -v "%cd%/reports:/app/reports" --name scanner-container scanner-gui
+    docker run -d -p 5050:5050 -v "%cd%/reports:/app/reports" --name scanner-container scanner-gui
     ```
     **For Linux/macOS:**
     ```bash
-    docker run -p 5001:5001 -v "$(pwd)/reports:/app/reports" --name scanner-container scanner-gui
+    docker run -d -p 5050:5050 -v "$(pwd)/reports:/app/reports" --name scanner-container scanner-gui
     ```
 4.  The web application is now running at `http://127.0.0.1:5050`.
 
+> If port 5050 is already in use on the host, change `docker-compose.yml`:
+
+```yaml
+ports:
+  - "5051:5000"   # Host:Container
+```
 ---
 ## 🚀 How to Run the Scanner
 Once the web application is running (either via Docker or manually), you can start a scan:
@@ -132,13 +139,6 @@ Once the web application is running (either via Docker or manually), you can sta
 2.  Click the **"🚀 New Scan"** button.
 3.  Fill the form with the target URL and credentials, then click **"Start Scan"**.
 4.  You will be redirected to the log page, and after it's finished, the report will appear on the dashboard.
-
-> If port 5050 is already in use on the host, change `docker-compose.yml`:
-
-```yaml
-ports:
-  - "5051:5000"   # Host:Container
-```
 ---
 
 ### 3. Using the Command-Line (CLI)
