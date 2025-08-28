@@ -41,7 +41,7 @@ To run this project on your computer, follow these steps:
 
 1.  **Clone this repository:**
     ```bash
-    git clone [https://github.com/NasiGoRank/Crawlrice.git](https://github.com/NasiGoRank/Crawlrice.git)
+    git clone https://github.com/NasiGoRank/Crawlrice.git
     cd Crawlrice
     ```
 
