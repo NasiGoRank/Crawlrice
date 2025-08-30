@@ -16,7 +16,7 @@ echo "✅ Dependensi berhasil diinstal."
 
 echo "--- [3/3] Membuat 'crawlrice' menjadi perintah global..."
 
-SCRIPT_PATH=$(realpath "Cli_Crawlrice/crawlrice.py")
+SCRIPT_PATH=$(realpath "Main/Cli_Crawlrice/crawlrice.py")
 
 chmod +x "$SCRIPT_PATH"
 
