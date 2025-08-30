@@ -88,7 +88,7 @@ Since the scanner relies on Selenium, you need a working browser and driver.
 sudo apt update
 sudo apt install wget unzip -y
 
-#Get you're latest version of Google Chrome
+#Get your latest version of Google Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ./google-chrome-stable_current_amd64.deb -y
 
