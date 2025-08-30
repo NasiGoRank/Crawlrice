@@ -59,32 +59,7 @@ Crawlrice/
 
 ---
 
-## 🚀 Usage Guide
-
-This project can be run in several ways depending on your needs.
-
-### 🐳 Method 1: Running the Web GUI with Docker (Recommended)
-
-This is the easiest and most reliable way to get the web application running.
-
-**Prerequisites:**
-
-* [Docker](https://www.docker.com/products/docker-desktop/) & Docker Compose
-
-**Instructions:**
-
-1. Clone this repository.
-2. Navigate to the project's root directory (`Crawlrice/`) in your terminal.
-3. Run the application using Docker Compose:
-
-   ```bash
-   docker-compose up -d --build
-   ```
-4. The web application is now running at **`http://127.0.0.1:5050`**.
-5. To stop the application, run: `docker-compose down`.
-
-### 👨‍💻 Method 2: Installation and CLI Usage (Manual)
-
+## Installation Guide
 Follow this guide to install the project manually and use the scanner directly from your command line.
 
 **Prerequisites:**
@@ -103,14 +78,7 @@ git clone https://github.com/NasiGoRank/Crawlrice.git
 cd Crawlrice
 ```
 
-### Step 2: Install Dependencies
-
-```bash
-# Install required Python libraries
-pip install -r requirements.txt
-```
-
-### Step 3: Install Google Chrome & ChromeDriver
+### Step 2: Install Google Chrome & ChromeDriver
 
 Since the scanner relies on Selenium, you need a working browser and driver.
 
@@ -144,7 +112,7 @@ sudo chmod +x /usr/local/bin/chromedriver
 chromedriver --version
 ```
 
-### Step 4: Make the Scanner a Global Command
+### Step 3: Make the Scanner a Global Command
 
 Run the setup script for your operating system. This will make the `crawlrice` command available from any directory in your terminal.
 
@@ -165,9 +133,34 @@ sudo ./setup.sh
 
 *(Open a new terminal after setup completes.)*
 
-### Step 5: Run the Scanner via CLI
+---
+## 🚀 Usage Guide
 
-You can now run the `crawlrice` command from any directory. For reports to sync with the Docker GUI, it's best to run the command from the project's root folder (`Crawlrice/`).
+This project can be run in several ways depending on your needs.
+
+### 🐳 Method 1: Running the Web GUI with Docker (Recommended)
+
+This is the easiest and most reliable way to get the web application running.
+
+**Prerequisites:**
+
+* [Docker](https://www.docker.com/products/docker-desktop/) & Docker Compose
+
+**Instructions:**
+
+1. Clone this repository.
+2. Navigate to the project's root directory (`Crawlrice/`) in your terminal.
+3. Run the application using Docker Compose:
+
+   ```bash
+   docker-compose up -d --build
+   ```
+4. The web application is now running at **`http://127.0.0.1:5050`**.
+5. To stop the application, run: `docker-compose down`.
+
+### 👨‍💻 Method 2: Installation and CLI Usage (Manual)
+
+You can run the `crawlrice` command from any directory. For reports to sync with the Docker GUI, it's best to run the command from the project's root folder (`Crawlrice/`).
 
 **Usage Examples:**
 
