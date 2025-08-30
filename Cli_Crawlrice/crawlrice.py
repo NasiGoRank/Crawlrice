@@ -202,6 +202,9 @@ def run(base_url, attacker_user, attacker_pass, victim_user, victim_pass):
     start_paths = ["/", "/dashboard", "/profile"]
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
+    if os.path.exists('/.dockerenv'):
+        reports_dir = '/app/reports'
+    else:
     reports_dir = os.path.join(script_dir, '..', 'Gui_Crawlrice', 'reports')
     if not os.path.exists(reports_dir):
         os.makedirs(reports_dir)
