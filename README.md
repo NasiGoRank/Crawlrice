@@ -60,7 +60,7 @@ Crawlrice/
 ---
 
 ## ⚙️ Installation Guide
-Follow this guide to install the project manually and use the scanner directly from your command line.
+Follow this guide to install the project manually from your command line.
 
 **Prerequisites:**
 
