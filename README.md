@@ -1,123 +1,216 @@
 # IDOR/BAC Scanner with Web GUI
 
+![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 A tool for automatically scanning for IDOR (*Insecure Direct Object References*) and BAC (*Broken Access Control*) vulnerabilities. This project consists of two main parts: a flexible CLI scanner and a Flask-based web interface (GUI) to simplify scan execution and report analysis.
 
 ## 📸 Interface Showcase
 
 ### Main Dashboard
 
+*A searchable and sortable dashboard displaying all scan reports.*
 
 ### Real-time Scan Progress Page
 
+*A terminal-like view showing live output from the scanner as it runs.*
 
 ---
+
 ## ✨ Key Features
--   **Interactive Web Dashboard**: View scan history in a searchable and sortable table.
--   **Execute Scans from the Web**: Easily run new scans via a form in the web interface.
--   **Real-time Scan Logs**: Monitor the scanner's output process directly in the browser.
--   **Flexible CLI Scanner**: Run scans directly from the terminal with various dynamic arguments.
--   **Intelligent Crawling**: Uses Selenium to crawl modern, JavaScript-heavy websites.
--   **Automatic Role Detection**: Capable of extracting user roles (e.g., "admin", "student") from the profile page after logging in.
--   **Report Management**: View vulnerability finding details and easily clear the report history.
+
+* **Interactive Web Dashboard**: View scan history in a searchable and sortable table.
+* **Execute Scans from the Web**: Easily run new scans via a form in the web interface.
+* **Real-time Scan Logs**: Monitor the scanner's output process directly in the browser.
+* **Flexible CLI Scanner**: Run scans directly from the terminal with various dynamic arguments.
+* **Intelligent Crawling**: Uses Selenium to crawl modern, JavaScript-heavy websites.
+* **Report Management**: View vulnerability finding details and easily clear the report history.
 
 ---
+
+## 🛠️ Technology Stack
+
+* **Backend**: Python, Flask
+* **Frontend**: HTML, Bootstrap 5, JavaScript, DataTables.js
+* **Scanner**: Selenium, BeautifulSoup4, Requests
+* **Deployment**: Docker, Gunicorn
+
+---
+
 ## 📂 Project Structure
 ```
 Crawlrice/
 ├── Cli_Crawlrice/
-│   ├── __init__.py         # Makes the directory a Python package
+│   ├── __init__.py
 │   └── crawlrice.py        # Main scanner script (CLI)
 ├── Gui_Crawlrice/
 │   ├── app.py              # Flask web application (GUI)
 │   ├── reports/            # Report output folder (ignored by Git)
 │   ├── static/             # CSS and JavaScript files
 │   └── templates/          # HTML files
-├── setup.sh
-├── README.md               # This documentation
-├── requirements.txt        # List of required libraries
-└── setup.py                # Setup script for installing the CLI command
+├── Dockerfile              # Instructions to build the Docker image
+├── docker-compose.yml      # Easy one-command Docker startup
+├── setup.py                # Setup script for installing the CLI
+├── setup.sh                # Setup script for Linux/macOS
+├── setup.bat               # Setup script for Windows (Currently not available)
+├── requirements.txt        # List of required Python libraries
+└── README.md               # This documentation
 ```
 
 ---
-## ⚙️ Installation (Docker installation currently unavailable)
-To run this project on your computer, follow these steps:
 
-```yaml
-Before you install it please make sure to install Google Crhome on your device.  
-```
+## 🚀 Usage Guide
 
-1.  **Clone this repository:**
-    ```bash
-    git clone https://github.com/NasiGoRank/Crawlrice.git
-    cd Crawlrice
-    ```
+This project can be run in several ways depending on your needs.
 
-2.  **(Optional but recommended) Create and activate a virtual environment:**
-    ```bash
-    # Create venv
-    python -m venv venv
+### 🐳 Method 1: Running the Web GUI with Docker (Recommended)
 
-    # Activate venv on Windows
-    .\venv\Scripts\activate
+This is the easiest and most reliable way to get the web application running.
 
-    # Activate venv on Linux/macOS
-    source venv/bin/activate
-    ```
+**Prerequisites:**
 
-3.  **Install all required libraries:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+* [Docker](https://www.docker.com/products/docker-desktop/) & Docker Compose
+
+**Instructions:**
+
+1. Clone this repository.
+2. Navigate to the project's root directory (`Crawlrice/`) in your terminal.
+3. Run the application using Docker Compose:
+
+   ```bash
+   docker-compose up -d --build
+   ```
+4. The web application is now running at **`http://127.0.0.1:5050`**.
+5. To stop the application, run: `docker-compose down`.
+
+### 👨‍💻 Method 2: Installation and CLI Usage (Manual)
+
+Follow this guide to install the project manually and use the scanner directly from your command line.
+
+**Prerequisites:**
+
+* [Git](https://git-scm.com/)
+* [Python](https://www.python.org/) (version 3.7+ is recommended)
+* [Google Chrome](https://www.google.com/chrome/) (or Chromium)
+* ChromeDriver (matching your Chrome version)
 
 ---
-## 🚀 How to Use
-There are several ways to use this tool: via the Web Interface (recommended) or the Command-Line.
 
-### 1. Using the Web Interface (GUI)
-This is the easiest and most interactive method.
+### Step 1: Clone the Repository
 
-1.  **Run the Flask web server:**
-    Open a terminal, navigate to the `Gui_Crawlrice` folder, and then run:
-    ```bash
-    cd Gui_Crawlrice
-    python app.py
-    ```
-
-2.  **Open the Dashboard:**
-    Open your browser and visit `http://127.0.0.1:5050`.
-
-3.  **Login:**
-    Use the admin credentials configured in the `app.py` file. Defaults:
-    -   Username: `admin`
-    -   Password: `password123`
-
-4.  **Start a New Scan:**
-    -   Click the **"🚀 New Scan"** button.
-    -   Fill the form with the target URL and credentials for the attacker (low privilege) and victim (high privilege) accounts.
-    -   Click **"Start Scan"**. You will be redirected to a page that displays the scan process log in real-time.
-    -   After it's finished, return to the dashboard to see the new report.
----
-
-### 3. Using the Command-Line (CLI)
-You can also run the scanner script directly from the terminal. This is useful for automation. There are two ways to do this:
-
-This method allows you to run the `crawlrice` command from **any directory** in your terminal, just like a native application.
-
-1.  **Navigate to the project's root directory** (`Crawlrice/`) in your terminal and ensure your virtual environment is activated.
-
-2.  **Install the package** in "editable" mode. This creates a link to your script so any changes you make are immediately active.
-    ```bash
-    chmod +x setup.sh
-    ./setup.sh
-    ```
-
-3.  Once installed, you can open a **new terminal** and use the `crawlrice` command from anywhere.
-
-**Usage Examples (Global):**
 ```bash
-# Scan with full passwords from any directory
-crawlrice -u [http://example.com](http://example.com) -au attacker -ap password -vu victim -vp password
+git clone https://github.com/NasiGoRank/Crawlrice.git
+cd Crawlrice
+```
 
-# Display the help menu from any directory
+### Step 2: Install Dependencies
+
+```bash
+# Install required Python libraries
+pip install -r requirements.txt
+```
+
+### Step 3: Install Google Chrome & ChromeDriver
+
+Since the scanner relies on Selenium, you need a working browser and driver.
+
+**Install Google Chrome:**
+
+```bash
+sudo apt update
+sudo apt install wget unzip -y
+
+#Get you're latest version of Google Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb -y
+
+# Verify installation
+google-chrome --version
+```
+
+**Install ChromeDriver (must match your Chrome version):**
+
+```bash
+# Remove old versions
+sudo rm -f /usr/local/bin/chromedriver
+
+# Example: Chrome version 139.0.7258.154 (Make sure it's the same version with the Google Chrome)
+wget https://storage.googleapis.com/chrome-for-testing-public/139.0.7258.154/linux64/chromedriver-linux64.zip
+unzip chromedriver-linux64.zip
+sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
+sudo chmod +x /usr/local/bin/chromedriver
+
+# Verify installation
+chromedriver --version
+```
+
+### Step 4: Make the Scanner a Global Command
+
+Run the setup script for your operating system. This will make the `crawlrice` command available from any directory in your terminal.
+
+**For Windows (Currently not available):**
+
+```bash
+.\setup.bat
+```
+
+*(You may need to run as Administrator. Open a new terminal after setup completes.)*
+
+**For Linux/macOS:**
+
+```bash
+chmod +x setup.sh
+sudo ./setup.sh
+```
+
+*(Open a new terminal after setup completes.)*
+
+### Step 5: Run the Scanner via CLI
+
+You can now run the `crawlrice` command from any directory. For reports to sync with the Docker GUI, it's best to run the command from the project's root folder (`Crawlrice/`).
+
+**Usage Examples:**
+
+```bash
+# Scan with full passwords
+crawlrice -u http://example.com -au attacker -ap password -vu victim -vp password
+
+# Display the help menu
 crawlrice --help
 ```
+
+---
+
+## 🔬 Testing Selenium Setup
+
+(Optional, but recommended before first use)
+
+Create a file `test_selenium.py`:
+
+```python
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+options = Options()
+options.add_argument("--headless")
+driver = webdriver.Chrome(options=options)
+
+driver.get("https://www.google.com")
+print("Page Title:", driver.title)
+
+driver.quit()
+```
+
+Run:
+
+```bash
+python3 test_selenium.py
+```
+
+Expected output:
+
+```
+Page Title: Google
+```
+
+This confirms that Chrome + ChromeDriver are working correctly.
