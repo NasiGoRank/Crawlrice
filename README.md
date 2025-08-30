@@ -42,6 +42,10 @@ Crawlrice/
 ## ⚙️ Installation
 To run this project on your computer, follow these steps:
 
+```yaml
+Before you install it please make sure to install Google Crhome on your device.  
+```
+
 1.  **Clone this repository:**
     ```bash
     git clone https://github.com/NasiGoRank/Crawlrice.git
@@ -94,78 +98,9 @@ This is the easiest and most interactive method.
     -   After it's finished, return to the dashboard to see the new report.
 ---
 
-### 2. 🐳 Running with Docker (Recommended)
-This is the easiest way to run the web application. You just need Docker and Docker Compose installed.
-
-#### Option 1: Using Docker Compose (Single Command)
-1.  Ensure you have the `Dockerfile` and `docker-compose.yml` files inside the `Gui_Crawlrice` folder.
-2.  Open a terminal inside the `Gui_Crawlrice` folder, and then run:
-    ```bash
-    cd Gui_Crawlrice
-    docker-compose up -d
-    ```
-3.  The web application is now running at `http://127.0.0.1:5050`.
-4.  To stop the application, run:
-    ```bash
-    docker-compose down
-    ```
-
-#### Option 2: Using Docker Build & Run (Manual)
-1.  Ensure you have the `Dockerfile` inside the `Gui_Crawlrice` folder.
-2.  Open a terminal inside the `Gui_Crawlrice` folder and build the image:
-    ```bash
-    docker build -t scanner-gui .
-    ```
-3.  After the build is complete, run the container with the following command:
-    
-    **For Windows (CMD/PowerShell):**
-    ```bash
-    docker run -d -p 5050:5050 -v "%cd%/reports:/app/reports" --name scanner-container scanner-gui
-    ```
-    **For Linux/macOS:**
-    ```bash
-    docker run -d -p 5050:5050 -v "$(pwd)/reports:/app/reports" --name scanner-container scanner-gui
-    ```
-4.  The web application is now running at `http://127.0.0.1:5050`.
-
-> If port 5050 is already in use on the host, change `docker-compose.yml`:
-
-```yaml
-ports:
-  - "5051:5000"   # Host:Container
-```
----
-## 🚀 How to Run the Scanner
-Once the web application is running (either via Docker or manually), you can start a scan:
-
-1.  Open `http://127.0.0.1:5050` and login (default: `admin`/`password123`).
-2.  Click the **"🚀 New Scan"** button.
-3.  Fill the form with the target URL and credentials, then click **"Start Scan"**.
-4.  You will be redirected to the log page, and after it's finished, the report will appear on the dashboard.
----
-
 ### 3. Using the Command-Line (CLI)
 You can also run the scanner script directly from the terminal. This is useful for automation. There are two ways to do this:
 
-#### Method A: Direct Execution
-This is the basic way to run the script without any prior installation.
-
-1.  Open a terminal and navigate to the `Cli_Crawlrice` folder.
-2.  Run the script with `python` and the required arguments.
-
-**Usage Examples:**
-```bash
-# Scan with full passwords
-python crawlrice.py -u http://example.com -au attacker -ap password -vu victim -vp password
-
-# Scan if the attacker account has no password
-python crawlrice.py -u http://example.com -au attacker -vu admin -vp adminpass
-
-# Display the help menu
-python crawlrice.py --help
-```
-
-#### Method B: Installing as a Global Command (Recommended)
 This method allows you to run the `crawlrice` command from **any directory** in your terminal, just like a native application.
 
 1.  **Navigate to the project's root directory** (`Crawlrice/`) in your terminal and ensure your virtual environment is activated.

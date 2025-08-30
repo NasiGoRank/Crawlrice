@@ -5,7 +5,17 @@ MIN_PYTHON_VERSION="3.7"
 echo "🚀 Starting global setup for Crawlrice Project..."
 echo "WARNING: Installation will be performed globally without a virtual environment."
 
-echo "--- [1/3] Checking Python version..."
+echo "--- Memeriksa ketersediaan Google Chrome..."
+if ! command -v google-chrome-stable &> /dev/null
+then
+    echo "❌ Error: Google Chrome tidak ditemukan."
+    echo "   Selenium di proyek ini membutuhkan Google Chrome untuk berjalan."
+    echo "   Mohon install Google Chrome secara manual terlebih dahulu."
+    exit 1
+fi
+echo "✅ Google Chrome ditemukan."
+
+echo "--- Checking Python version..."
 if ! command -v python3 &> /dev/null
 then
     echo "❌ Error: Python 3 not found. Please install Python 3 (version ${MIN_PYTHON_VERSION} or higher) first."
@@ -21,11 +31,11 @@ if [ "$(printf '%s\n' "$MIN_PYTHON_VERSION" "$CURRENT_VERSION" | sort -V | head 
 fi
 echo "✅ Python ${CURRENT_VERSION} found (meets requirement >= ${MIN_PYTHON_VERSION})."
 
-echo "--- [2/3] Installing all libraries from requirements.txt globally..."
+echo "--- Installing all libraries from requirements.txt globally..."
 pip3 install -r requirements.txt
 echo "✅ All dependencies successfully installed."
 
-echo "--- [3/3] Installing the ‘crawlrice’ script as a global command..."
+echo "--- Installing the ‘crawlrice’ script as a global command..."
 pip3 install -e .
 echo "✅ Project successfully installed in editable mode."
 
