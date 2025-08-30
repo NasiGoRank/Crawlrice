@@ -205,7 +205,7 @@ def run(base_url, attacker_user, attacker_pass, victim_user, victim_pass):
     if os.path.exists('/.dockerenv'):
         reports_dir = '/app/reports'
     else:
-    reports_dir = os.path.join(script_dir, '..', 'Gui_Crawlrice', 'reports')
+        reports_dir = os.path.join(script_dir, '..', 'Gui_Crawlrice', 'reports')
     if not os.path.exists(reports_dir):
         os.makedirs(reports_dir)
     domain_name = urlparse.urlparse(base_url).netloc.replace(':', '_')
