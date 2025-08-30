@@ -39,7 +39,7 @@ Crawlrice/
 ```
 
 ---
-## ⚙️ Installation
+## ⚙️ Installation (Docker installation currently unavailable)
 To run this project on your computer, follow these steps:
 
 ```yaml
