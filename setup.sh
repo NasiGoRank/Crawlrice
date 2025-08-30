@@ -1,46 +1,34 @@
-#!/bin/bash
 set -e
-MIN_PYTHON_VERSION="3.7"
 
-echo "🚀 Starting global setup for Crawlrice Project..."
-echo "WARNING: Installation will be performed globally without a virtual environment."
+echo "🚀 Memulai setup global untuk Crawlrice..."
+echo "Skrip ini akan meminta password sudo untuk instalasi global."
 
-echo "--- Memeriksa ketersediaan Google Chrome..."
-if ! command -v google-chrome-stable &> /dev/null
-then
-    echo "❌ Error: Google Chrome tidak ditemukan."
-    echo "   Selenium di proyek ini membutuhkan Google Chrome untuk berjalan."
-    echo "   Mohon install Google Chrome secara manual terlebih dahulu."
+echo "--- [1/3] Memeriksa Python 3 dan Pip3..."
+if ! command -v python3 &> /dev/null || ! command -v pip3 &> /dev/null; then
+    echo "❌ Error: python3 atau pip3 tidak ditemukan. Mohon install terlebih dahulu."
     exit 1
 fi
-echo "✅ Google Chrome ditemukan."
+echo "✅ Python 3 dan Pip3 ditemukan."
 
-echo "--- Checking Python version..."
-if ! command -v python3 &> /dev/null
-then
-    echo "❌ Error: Python 3 not found. Please install Python 3 (version ${MIN_PYTHON_VERSION} or higher) first."
-    exit 1
+echo "--- [2/3] Menginstall dependensi dari requirements.txt..."
+sudo pip3 install -r requirements.txt
+echo "✅ Dependensi berhasil diinstal."
+
+echo "--- [3/3] Membuat 'crawlrice' menjadi perintah global..."
+
+SCRIPT_PATH=$(realpath "Cli_Crawlrice/crawlrice.py")
+
+chmod +x "$SCRIPT_PATH"
+
+if [ -f "/usr/local/bin/crawlrice" ]; then
+    echo "  > Menghapus link lama..."
+    sudo rm /usr/local/bin/crawlrice
 fi
-
-CURRENT_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-
-if [ "$(printf '%s\n' "$MIN_PYTHON_VERSION" "$CURRENT_VERSION" | sort -V | head -n1)" != "$MIN_PYTHON_VERSION" ]; then 
-    echo "❌ Error: Your Python version is ${CURRENT_VERSION}, but this project requires at least version ${MIN_PYTHON_VERSION}."
-    echo "   Please upgrade your Python 3."
-    exit 1
-fi
-echo "✅ Python ${CURRENT_VERSION} found (meets requirement >= ${MIN_PYTHON_VERSION})."
-
-echo "--- Installing all libraries from requirements.txt globally..."
-pip3 install -r requirements.txt
-echo "✅ All dependencies successfully installed."
-
-echo "--- Installing the ‘crawlrice’ script as a global command..."
-pip3 install -e .
-echo "✅ Project successfully installed in editable mode."
+sudo ln -s "$SCRIPT_PATH" /usr/local/bin/crawlrice
+echo "✅ Perintah 'crawlrice' berhasil dibuat."
 
 echo ""
-echo "--- ✨ Setup Complete! ---"
-echo "You can now run the ‘crawlrice’ command from any directory."
-echo "Example: crawlrice --help"
+echo "--- ✨ Setup Selesai! ---"
+echo "Anda sekarang bisa membuka terminal baru dan menjalankan perintah 'crawlrice' dari direktori mana pun."
+echo "Contoh: crawlrice --help"
 echo "--------------------------"

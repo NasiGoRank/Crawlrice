@@ -7,5 +7,5 @@ services:
     ports:
       - "5050:5050"
     volumes:
-      - ./Gui_Crawlrice/reports:/app/reports
+      - ./Main/Gui_Crawlrice/reports:/app/reports
     restart: unless-stopped

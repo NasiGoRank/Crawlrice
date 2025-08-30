@@ -16,9 +16,8 @@ ENV PYTHONPATH /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./Gui_Crawlrice/. .
-
-COPY ./Cli_Crawlrice ./Cli_Crawlrice
+COPY ./Main/Gui_Crawlrice/. .
+COPY ./Main/Cli_Crawlrice ./Cli_Crawlrice
 
 EXPOSE 5050
 
