@@ -158,7 +158,7 @@ This is the easiest and most reliable way to get the web application running.
 4. The web application is now running at **`http://127.0.0.1:5050`**.
 5. To stop the application, run: `docker-compose down`.
 
-### 👨‍💻 Method 2: Installation and CLI Usage (Manual)
+### 👨‍💻 Method 2: CLI Usage (Manual)
 
 You can run the `crawlrice` command from any directory. For reports to sync with the Docker GUI, it's best to run the command from the project's root folder (`Crawlrice/`).
 
