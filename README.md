@@ -40,21 +40,22 @@ A tool for automatically scanning for IDOR (*Insecure Direct Object References*)
 ## 📂 Project Structure
 ```
 Crawlrice/
-├── Cli_Crawlrice/
-│   ├── __init__.py
-│   └── crawlrice.py        # Main scanner script (CLI)
-├── Gui_Crawlrice/
-│   ├── app.py              # Flask web application (GUI)
-│   ├── reports/            # Report output folder (ignored by Git)
-│   ├── static/             # CSS and JavaScript files
-│   └── templates/          # HTML files
-├── Dockerfile              # Instructions to build the Docker image
-├── docker-compose.yml      # Easy one-command Docker startup
-├── setup.py                # Setup script for installing the CLI
-├── setup.sh                # Setup script for Linux/macOS
-├── setup.bat               # Setup script for Windows (Currently not available)
-├── requirements.txt        # List of required Python libraries
-└── README.md               # This documentation
+├── Main                         # Main folder
+│    ├── Cli_Crawlrice/
+│    │   ├── __init__.py
+│    │   └── crawlrice.py        # Main scanner script (CLI)
+│    └── Gui_Crawlrice/
+│        ├── app.py              # Flask web application (GUI)
+│        ├── reports/            # Report output folder (ignored by Git)
+│        ├── static/             # CSS and JavaScript files
+│        └── templates/          # HTML files
+├── Dockerfile                   # Instructions to build the Docker image
+├── docker-compose.yml           # Easy one-command Docker startup
+├── setup.py                     # Setup script for installing the CLI
+├── setup.sh                     # Setup script for Linux/macOS
+├── setup.bat                    # Setup script for Windows (Currently not available)
+├── requirements.txt             # List of required Python libraries
+└── README.md                    # This documentation
 ```
 
 ---
@@ -89,7 +90,7 @@ sudo apt update
 sudo apt install wget unzip -y
 
 #Get your latest version of Google Chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ./google-chrome-stable_current_amd64.deb -y
 
 # Verify installation
@@ -103,8 +104,8 @@ google-chrome --version
 sudo rm -f /usr/local/bin/chromedriver
 
 # Example: Chrome version 139.0.7258.154 (Make sure it's the same version with the Google Chrome)
-wget https://storage.googleapis.com/chrome-for-testing-public/139.0.7258.154/linux64/chromedriver-linux64.zip
-unzip chromedriver-linux64.zip
+sudo wget https://storage.googleapis.com/chrome-for-testing-public/139.0.7258.154/linux64/chromedriver-linux64.zip
+sudo unzip chromedriver-linux64.zip
 sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
 sudo chmod +x /usr/local/bin/chromedriver
 
