@@ -243,7 +243,11 @@ def run(base_url, attacker_user, attacker_pass, victim_user, victim_pass):
 
     vuln_findings = [f for f in findings if f["vulnerable"]]
     print(f"\n✨ Ditemukan {len(vuln_findings)} potensi kerentanan!")
-
+    if vuln_findings:
+        print("  Rincian endpoint yang rentan:")
+        for finding in vuln_findings:
+            ep = finding['endpoint']
+            print(f"    -> RENTAN: {ep['method']} {ep['path']} {ep['query']}")
     report = {
         "base_url": base_url,
         "actors": {
@@ -280,11 +284,7 @@ def main():
         description="🚀 Alat pemindai IDOR/BAC otomatis dengan crawling berbasis Selenium.",
         epilog="""
 Contoh Penggunaan:
-  1. Scan dengan password lengkap:
      python %(prog)s -u http://127.0.0.1:5000 -au attacker -ap password -vu victim -vp password
-
-  2. Scan di mana akun attacker tidak memiliki password:
-     python %(prog)s -u http://target.com -au attacker -vu admin -vp adminpass
 """,
         formatter_class=formatter
     )
