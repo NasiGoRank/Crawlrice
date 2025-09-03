@@ -166,7 +166,7 @@ For smoother integration between CLI and Docker (so reports sync correctly):
 1. Give your user ownership of the Crawlrice project folder:
 
    ```bash
-   sudo chown -R $USER:$USER Crawlrice
+   sudo chown -R Your Username:Your Username Crawlrice
    ```
 
 2. Add Crawlrice project root as an environment variable:
@@ -178,7 +178,7 @@ For smoother integration between CLI and Docker (so reports sync correctly):
    Add this line at the bottom:
 
    ```bash
-   export CRAWLRICE_PROJECT_ROOT="/home/nasi/Crawlrice"
+   export CRAWLRICE_PROJECT_ROOT="Your path to Crawlrice"
    ```
 
 3. Reload your shell configuration:
