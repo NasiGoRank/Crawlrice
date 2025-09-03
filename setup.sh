@@ -30,7 +30,7 @@ else
 fi
 
 echo "--- Menginstall dependensi dari requirements.txt..."
-sudo pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt --break-system-packages --ignore-installed
 echo "✅ Dependensi berhasil diinstal."
 
 echo "--- Membuat 'crawlrice' menjadi perintah global..."
