@@ -159,6 +159,38 @@ This is the easiest and most reliable way to get the web application running.
 4. The web application is now running at **`http://127.0.0.1:5050`**.
 5. To stop the application, run: `docker-compose down`.
 
+### 🔧 Post-Setup Configuration (Optional but Recommended)
+
+For smoother integration between CLI and Docker (so reports sync correctly):
+
+1. Give your user ownership of the Crawlrice project folder:
+
+   ```bash
+   sudo chown -R $USER:$USER Crawlrice
+   ```
+
+2. Add Crawlrice project root as an environment variable:
+
+   ```bash
+   nano ~/.bashrc
+   ```
+
+   Add this line at the bottom:
+
+   ```bash
+   export CRAWLRICE_PROJECT_ROOT="/home/nasi/Crawlrice"
+   ```
+
+3. Reload your shell configuration:
+
+   ```bash
+   source ~/.bashrc
+   ```
+
+Now the project root is globally accessible via `$CRAWLRICE_PROJECT_ROOT`, which makes volume mounts and CLI report syncing easier.
+
+---
+
 ### 👨‍💻 Method 2: CLI Usage (Manual)
 
 You can run the `crawlrice` command from any directory. For reports to sync with the Docker GUI, it's best to run the command from the project's root folder (`Crawlrice/`).
