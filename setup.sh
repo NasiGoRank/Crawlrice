@@ -14,7 +14,7 @@ if ! command -v python3 &> /dev/null || ! command -v pip3 &> /dev/null; then
         if command -v apt-get &> /dev/null; then
             echo "   -> Menginstall Python 3, Pip, dan Venv menggunakan apt-get..."
             sudo apt-get update
-            sudo apt-get install -y python3 python3-pip python3-venv --break-system-packages
+            sudo apt-get install -y python3 python3-pip python3-venv 
             echo "   ✅ Python 3 berhasil diinstal."
         else
             echo "   ❌ Instalasi otomatis tidak didukung di OS ini (hanya Debian/Ubuntu)."
@@ -30,7 +30,7 @@ else
 fi
 
 echo "--- Menginstall dependensi dari requirements.txt..."
-sudo pip3 install -r requirements.txt --break-system-packages
+sudo pip3 install -r requirements.txt
 echo "✅ Dependensi berhasil diinstal."
 
 echo "--- Membuat 'crawlrice' menjadi perintah global..."
