@@ -189,6 +189,9 @@ For smoother integration between CLI and Docker (so reports sync correctly):
 
 Now the project root is globally accessible via `$CRAWLRICE_PROJECT_ROOT`, which makes volume mounts and CLI report syncing easier.
 
+You can access the website with:
+Username: admin
+Password: password123
 ---
 
 ### 👨‍💻 Method 2: CLI Usage (Manual)
